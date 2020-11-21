@@ -24,7 +24,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      routeName: "/", // obligatoire depuis version 1.3
+      routeName: "/", // mandatory since v.1.3
+      // navigate with seconds
+      // seconds: 3,
+      // navigateAfterSeconds: notifications ? MessageScreen() : HomeScreen(),
       navigateAfterFuture: getNavigationWidget(),
       backgroundColor: Colors.teal,
       loaderColor: Colors.white,
