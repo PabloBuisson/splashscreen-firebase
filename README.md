@@ -1,16 +1,20 @@
-# splashscreenfirebase
+# :envelope_with_arrow: SplashScreen & Firebase
 
 Simple projet Flutter axé sur un SplashScreen gérant les redirections des notifications de Firebase 
 
-## Getting Started
+## :rocket: Objectifs du projet
 
-This project is a starting point for a Flutter application.
+* Faire des redirections lors de l'ouverture d'une notification Firebase
+* Concentrer l'ensemble des redirections et de la configuration Firebase dans une page de chargement
+* Quiter la page de chargement seulement lorsqu'une certaine action a été effectuée
+* Utiliser une Future pour décider quand sortir de la page de chargement
 
-A few resources to get you started if this is your first Flutter project:
+## :package: Packages
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+* [firebase_messaging](https://pub.dev/packages/firebase_messaging)
+* [splashscreen](https://pub.dev/packages/splashscreen)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## :pushpin: Versions
+
+* Flutter 1.22.4
+* Dart 2.10.4
