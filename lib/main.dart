@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'screens/contact_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/settings_screen.dart';
+import 'utilities/constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,12 +14,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'SplashScreen and Firebase',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(title: 'Flutter Demo Home Page'),
+      initialRoute: kRouteHome,
+      routes: {
+        kRouteHome: (context) => HomeScreen(),
+        kRouteContact: (context) => ContactScreen(),
+        kRouteSettings: (context) => SettingsScreen(),
+      },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
