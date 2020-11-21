@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/menu_drawer.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -20,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text("Home"),
       ),
+      endDrawer: MenuDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
