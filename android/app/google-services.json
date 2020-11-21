@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1070642675504",
+    "firebase_url": "https://splashscreen-6bcbc.firebaseio.com",
+    "project_id": "splashscreen-6bcbc",
+    "storage_bucket": "splashscreen-6bcbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070642675504:android:bcb1602f1e71b58611d2f5",
+        "android_client_info": {
+          "package_name": "com.pablobuisson.splashscreenfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070642675504-eoj196lr0tuo434spfilmt6btulmp5ei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe9DwYgfPxdGdoctj5YZHCYJddWevjACQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070642675504-eoj196lr0tuo434spfilmt6btulmp5ei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
