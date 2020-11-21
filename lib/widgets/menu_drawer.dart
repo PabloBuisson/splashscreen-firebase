@@ -23,6 +23,12 @@ class MenuDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            title: Text('Messages'),
+            onTap: () {
+              Navigator.popAndPushNamed(context, kRouteMessages);
+            },
+          ),
+          ListTile(
             title: Text('Settings'),
             onTap: () {
               Navigator.popAndPushNamed(context, kRouteSettings);

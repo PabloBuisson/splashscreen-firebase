@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 import 'screens/home_screen.dart';
+import 'screens/message_screen.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -10,12 +12,21 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  bool notifications = false;
+
+  @override
+  void initState() {
+    super.initState();
+    firebaseConfiguration();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
       routeName: "/", // obligatoire depuis version 1.3
       seconds: 3,
-      navigateAfterSeconds: HomeScreen(),
+      navigateAfterSeconds: notifications ? MessageScreen() : HomeScreen(),
       backgroundColor: Colors.teal,
       loaderColor: Colors.white,
       loadingText: Text(
@@ -23,5 +34,39 @@ class _LoadingScreenState extends State<LoadingScreen> {
         style: TextStyle(color: Colors.white, fontSize: 24.0),
       ),
     );
+  }
+
+  void firebaseConfiguration() {
+    // For iOS request permission first.
+    _firebaseMessaging.requestNotificationPermissions();
+    _firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings settings) {
+      print("iOS Settings registered: $settings");
+    });
+    // Notifications configurations
+    _firebaseMessaging.configure(
+      // l'application est inactive
+      // ↓ lance l'application suite à un clic sur la notification
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+        notifications = true;
+        // {notification: {}}
+      },
+      // l'application est active, mais en arrière-plan
+      // ↓ affiche l'application suite à un clic sur la notification
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+        notifications = true;
+        // {notification: {}
+      },
+      // l'utilisateur est sur l'application
+      // il ne reçoit pas de notification
+      // ↓ la propriété onMessage est appelée
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+      },
+    );
+    _firebaseMessaging.getToken().then((token){
+      print(token);
+    });
   }
 }
