@@ -25,8 +25,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     return SplashScreen(
       routeName: "/", // obligatoire depuis version 1.3
-      seconds: 3,
-      navigateAfterSeconds: notifications ? MessageScreen() : HomeScreen(),
+      navigateAfterFuture: getNavigationWidget(),
       backgroundColor: Colors.teal,
       loaderColor: Colors.white,
       loadingText: Text(
@@ -68,5 +67,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
     _firebaseMessaging.getToken().then((token){
       print(token);
     });
+  }
+
+  Future<Widget> getNavigationWidget() async {
+    debugPrint("Call from SplashScreen to decide where to go");
+
+    // simulate heavy computation
+    await Future.delayed(Duration(seconds: 5));
+    debugPrint("End of the heavy computation");
+
+    // decide where to go next
+    Widget navigationWidget = notifications ? MessageScreen() : HomeScreen();
+
+    return Future.value(navigationWidget);
   }
 }
