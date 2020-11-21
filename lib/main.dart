@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splashscreenfirebase/screens/message_screen.dart';
 
 import 'screens/contact_screen.dart';
 import 'screens/home_screen.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         kRouteHome: (context) => HomeScreen(),
         kRouteContact: (context) => ContactScreen(),
         kRouteSettings: (context) => SettingsScreen(),
+        kRouteMessages: (context) => MessageScreen(),
       },
       debugShowCheckedModeBanner: false,
     );

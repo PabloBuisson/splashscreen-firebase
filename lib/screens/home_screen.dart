@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:splashscreenfirebase/utilities/constants.dart';
 
 import '../widgets/menu_drawer.dart';
 
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // ↓ lance l'application suite à un clic sur la notification
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
+        Navigator.pushNamed(context, kRouteMessages);
         // {notification: {}}
       },
       // l'application est active, mais en arrière-plan
@@ -38,6 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
       onResume: (Map<String, dynamic> message) async {
         print("onResume: $message");
         // {notification: {}
+      },
+      // l'utilisateur est sur l'application
+      // il ne reçoit pas de notification
+      // ↓ la propriété onMessage est appelée
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
       },
     );
     _firebaseMessaging.getToken().then((token){
