@@ -19,7 +19,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
+    // launched first to decide where to go next
     firebaseConfiguration();
+    // heavy computation that complete after redirection
     checkUserAndToken();
   }
 
