@@ -14,11 +14,13 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   bool notifications = false;
+  bool callFromSplashScreen;
 
   @override
   void initState() {
     super.initState();
     firebaseConfiguration();
+    checkUserAndToken();
   }
 
   @override
@@ -67,21 +69,35 @@ class _LoadingScreenState extends State<LoadingScreen> {
         print("onMessage: $message");
       },
     );
+  }
+
+  // simulate another heavy computation
+  checkUserAndToken() async {
+    debugPrint("check User");
+    // simulate heavy computation
+    await Future.delayed(Duration(seconds: 5));
+    debugPrint("end of checkUser");
+
+    debugPrint("check Token");
     _firebaseMessaging.getToken().then((token){
       print(token);
     });
+    await Future.delayed(Duration(seconds: 5));
+    debugPrint("End of check Token");
   }
 
   Future<Widget> getNavigationWidget() async {
-    debugPrint("Call from SplashScreen to decide where to go");
+    // prevent from being called twice
+    if (callFromSplashScreen == null) {
+      debugPrint("Call from SplashScreen to decide where to go");
+      callFromSplashScreen = true;
 
-    // simulate heavy computation
-    await Future.delayed(Duration(seconds: 5));
-    debugPrint("End of the heavy computation");
-
+      // simulate heavy computation
+      await Future.delayed(Duration(seconds: 5));
+      debugPrint("End of the heavy computation");
+    }
     // decide where to go next
     Widget navigationWidget = notifications ? MessageScreen() : HomeScreen();
-
     return Future.value(navigationWidget);
   }
 }
